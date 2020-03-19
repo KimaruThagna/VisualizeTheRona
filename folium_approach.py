@@ -1,12 +1,17 @@
 import folium, requests
-from data_gen import african_countries
+from data_gen import countries_with_coordinates
+from pandas.io.json import json_normalize
+import pandas as pd
 # download data from covid api
 url = 'https://api.covid19api.com/summary'
 covid_data = requests.get(url)
 covid_data = covid_data.json()
-print(covid_data['Countries'])
+#print(covid_data['Countries'])
+df = json_normalize(covid_data['Countries'])
+merged = pd.merge(df, countries_with_coordinates, on='Country')
+print(merged.head())
 # add a latitude and logitude property to the countries json objects for plotting
-for country in covid_data['Countries']
+
 # initialize map
 africa = folium.Map([-0.7832, 28.5085], zoom_start=3.42)
 folium.TileLayer(tiles='Stamen Toner',name="Stamen Toner").add_to(africa)
