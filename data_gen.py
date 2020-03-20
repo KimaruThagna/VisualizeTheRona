@@ -8,4 +8,7 @@ africa = continent[continent['Continent']=='Africa']
 african_countries = africa['Country']
 countries_with_coordinates = countries[countries['Country'].isin(african_countries)]
 countries_with_coordinates = countries_with_coordinates[['Country', 'latitude', 'longitude']]
+print(len(countries))
+print(len(african_countries))
+print(len(countries_with_coordinates))
 countries_with_coordinates.to_csv('african_countries_with_coords.csv')
